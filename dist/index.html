@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Roster</title>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+     
+    <link href="https://fonts.googleapis.com/css?family=Tinos&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- <nav>
+        <ul>
+            <li>NBA TEAMS</li>
+        </ul>
+    </nav> -->
+
+    <section id="search-container">
+        <div id="title"> My Roster </div>
+        <input id="team-input" type="text" placeholder="Insert team name"/>
+        <button id="get-roster" >Get Roster</button>
+    </section>
+
+    <hr style="border-top:1px solid rgb(224, 216, 216)">
+
+    <div id="results-container"></div>
+    <div id="no-results"></div>
+    <div id="load"></div>
+
+    <script id="results-template" type="text/x-handlebars-template">
+        {{#each players}}
+            <div class="card">
+                <p class="player-name">{{firstName}} {{lastName}}</p>
+                <p>{{jersey}}</p>
+
+                {{#if imgExists}}
+                    <img src="{{img}}">
+                {{else}}
+                    <img class="default-user" src="images/defaultUser.png">
+                {{/if}}
+
+                <p>{{pos}}</p>
+
+
+                <div class="hover-content">Games played: {{gamesPlayed}}</div>
+
+
+            </div>
+        {{/each}}
+    </script>
+    
+
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+
+    <script src="FetchPlayers.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
