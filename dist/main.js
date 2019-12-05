@@ -1,4 +1,4 @@
-$("#get-roster").on("click", () => {
+const getRoster = function(){
 
     $("#load").empty()
     $("#load").append(`
@@ -26,10 +26,32 @@ $("#get-roster").on("click", () => {
             renderer.renderData(rawData)
         }    
     })    
-})
+}
 
 console.log(
     "Team names: lakers, warriors, heat, suns"
 )
+
+//===================================================================
+const dreamManager = new DreamManager
+const dreamRenderer = new DreamRenderer
+dreamRenderer.renderDream()
+
+const manageDreamTeam = function(player){
+    dreamManager.checkTeam(player).then( result => {
+        dreamRenderer.renderDream()
+    })
+}
+
+const displayDream = function(){
+    let display = $("#dreamTeam-container").css("display")
+    if (display == "none"){
+        $("#dreamTeam-container").css("display", "block")
+    }
+    else if(display == "block"){
+        $("#dreamTeam-container").css("display", "none")
+    }
+}
+
 
 

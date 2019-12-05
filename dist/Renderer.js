@@ -26,30 +26,37 @@ class Renderer {
         return new Promise( (resolve, reject) => {
             let playersInfo = []
             for (let player of data){
-
-
-  
                 let url = `https://nba-players.herokuapp.com/players/${player.lastName}/${player.firstName}`
-                
-                this._checkExists(url).then( imgExists => {
-                    if (!imgExists){ url = "http://www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg"}
 
-                    // $.get(`/player-stats/?first=james&last=lebron`, result => {
+                this._checkExists(url).then( imgExists => {
 
                     $.get(`/player-stats/?last=${player.lastName}&first=${player.firstName}`, gamesPlayed => {
                         
-                    playersInfo.push({
-
+                        let playerInfo ={
+                            id: player.firstName + player.lastName + player.jersey + player.pos,//Math.random().toString(36).substr(2, 6),
                             firstName: player.firstName,
                             lastName: player.lastName,
                             jersey: player.jersey,
                             pos: player.pos,
                             imgExists : imgExists,
                             img: url,
-                            gamesPlayed : gamesPlayed
-                        })
-                        
+                            gamesPlayed : gamesPlayed,
+                        }
+
+                        // should make isStar function
+                        let dreamTeam = JSON.parse(localStorage.dreamTeam)
+                        let isStar = dreamTeam.filter(d => d.id == playerInfo.id)
+                        if (isStar.length != 0){
+                            playerInfo.star = true
+                        } 
+                        else{
+                            playerInfo.star = false
+                        }  
+
+                        playersInfo.push(playerInfo)
+
                         if (playersInfo.length == data.length){
+                            localStorage.playersInfo = JSON.stringify(playersInfo)
                             resolve(playersInfo)
                         }
                     })
@@ -61,7 +68,6 @@ class Renderer {
     }
 
     _renderPlayersInfo(players){
-        console.log(players)
         $("#load").empty()
 
         const source = $("#results-template").html()

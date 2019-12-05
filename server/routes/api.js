@@ -7,9 +7,10 @@ router.get('/', (req,res) => {
     console.log("Someone has come into the server.")
     res.send("Server is up and running smoothly")
 })
+
 //=============================================== team API
 
-const teamToIDs = {
+let teamToIDs = {
     "lakers": "1610612747",
     "warriors": "1610612744",
     "heat": "1610612748",
@@ -44,4 +45,42 @@ router.get(`/player-stats`, (req,res) => {
     })
 })
 
-module.exports = router
+//====================================================== dreamTeam
+let dreamTeam = []
+
+router.get('/dream-team', (req,res) => {
+    res.send(dreamTeam)
+})
+
+router.post('/dream-team', (req,res) => {
+    let player = req.body
+    console.log(player)
+    dreamTeam.push(player)
+    res.end()
+})
+
+router.delete('/dream-team/:playerId', (req,res) => {
+    let playerId = req.params.playerId
+    dreamTeam = dreamTeam.filter(p => p.id !== playerId)
+	res.end()
+})
+
+//====================================================== update teamToIDs -admin operation
+// teamToIDs = '{"lakers": "1610612747", "warriors": "1610612744", "heat": "1610612748", "suns": "1610612756"}'
+
+router.post('/teams', (req,res) => {
+    let newTeamInfo = req.body
+
+    let teamName = newTeamInfo.teamName
+    let teamId = newTeamInfo.teamId
+    teamToIDs[teamName] = teamId 
+    res.send("Just added a new team called " + teamName)
+})
+
+router.get('/teams', (req,res) => {
+    res.send(teamToIDs)
+})
+
+module.exports ={
+    router : router
+} 

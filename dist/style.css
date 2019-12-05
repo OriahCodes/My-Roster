@@ -34,6 +34,49 @@ li{
     color:#0a3d62;
 }
 
+hr{
+    border-top :1px solid rgb(224, 216, 216);
+}
+
+#dreamTeam-container{
+    display: block;
+}
+
+#show-dream-team{
+    background-color: #e74c3c;
+    border-width: 0px;
+    box-shadow: 1px 2px 3px gray;
+    font-size: 15px;
+    cursor: pointer;
+    color:whitesmoke
+}
+
+.little-card{
+    display: inline-block;
+    background-color: #78e08f;
+    padding: 5px;
+    border-radius: 3px;
+    box-shadow: 1px 2px 3px gray;
+    text-align: center;
+    font-size: 12px;
+    margin: 7px;
+    width: 95px;
+}
+
+.little-card > img{
+    width: 90%;
+}
+
+.little-card > .little-default-user{
+    width: 55%;
+    margin-top: 14px;
+}
+
+.little-card >.player-name{
+    font-weight: bold;
+}
+
+
 #results-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -63,6 +106,12 @@ li{
 .card > .default-user{
     width: 50%;
     margin-top: 22px
+}
+
+.fa-star{
+    color: #3498db;
+    float: right;
+    cursor: pointer;
 }
 
 .card:hover .hover-content {
