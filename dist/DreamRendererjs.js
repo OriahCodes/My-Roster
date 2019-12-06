@@ -4,13 +4,13 @@ class DreamRenderer{
         this.getTeam().then( players => {
             localStorage.dreamTeam = JSON.stringify(players)
 
-            $("#dreamTeam-container").empty()
+            $("#dream-team").empty()
 
             const source = $("#dream-template").html()
             const template = Handlebars.compile(source)
 
             let d = template({players})
-            $("#dreamTeam-container").append(d)
+            $("#dream-team").append(d)
         })
     }
 

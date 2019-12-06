@@ -44,12 +44,12 @@ const manageDreamTeam = function(player){
 }
 
 const displayDream = function(){
-    let display = $("#dreamTeam-container").css("display")
+    let display = $("#dream-team").css("display")
     if (display == "none"){
-        $("#dreamTeam-container").css("display", "block")
+        $("#dream-team").css("display", "block")
     }
     else if(display == "block"){
-        $("#dreamTeam-container").css("display", "none")
+        $("#dream-team").css("display", "none")
     }
 }
 
