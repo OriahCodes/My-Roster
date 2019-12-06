@@ -14,6 +14,6 @@ app.use('/', api)
 //========================================================
 
 const port = 3000
-app.listen(port, function(){
+app.listen(process.env.PORT || port, function(){
     console.log(`Running server on port ${port}`)
 })
